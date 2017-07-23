@@ -22,11 +22,10 @@ public class Model {
 
     /**
      * Returns a {@code int} pseudorandom value from a range included max and min.
-     *
-     * @param min minimum secretNumber of the range
-     * @param max maximum secretNumber of the range
-     * @return the random secretNumber from range
-     * @throws IllegalArgumentException {@inheritDoc}
+     * @param min minimum number of the range
+     * @param max maximum number of the range
+     * @return the random number from range
+     * @throws IllegalArgumentException {@inheritDoc} if min is greater or equals max
      */
     private static int rand(int min, int max) {
         if (min >= max) {
@@ -38,21 +37,20 @@ public class Model {
 
     /**
      * Returns a {@code int} pseudorandom value from {@code 0} to {@code 32767}.
-     *
      * @return the random secretNumber from range
-     * @throws IllegalArgumentException {@inheritDoc}
      */
     private static int rand() {
         int min = 0;
         int max = Short.MAX_VALUE;
 
-        if (min >= max) {
-            throw new IllegalArgumentException("max must be greater than min");
-        }
-
         return (int) (Math.random() * ((max - min) + 1)) + min;
     }
 
+    /**
+     * Adds inputted value to triesList and check that it equals secretNumber, otherwise changes range.
+     * @param value number inputted by user
+     * @return true if value equals secretNumber
+     */
     public boolean checkTry(int value) {
         lastTry = value;
         triesList.add(lastTry);
@@ -66,37 +64,15 @@ public class Model {
     }
 
     /**
-     * Returns <tt>true</tt> if this.lastTry equals this.secretNumber.
-     *
-     * @return <tt>true</tt> if this.lastTry equals this.secretNumber
-     */
-    private boolean isLastTryEqualNumber() {
-        return lastTry == secretNumber;
-    }
-
-    /**
-     * Returns <tt>true</tt> if this.lastTry greater than this.secretNumber.
-     *
-     * @return <tt>true</tt> if this.lastTry greater than this.secretNumber
-     */
-    private boolean isLastTryGreaterThanNumber() {
-        if (lastTry > secretNumber) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Changes range of numbers to guess.
-     * Divides range on secretNumber of last try and leave the part that consists secretNumber.
+     * Changes range of numbers where secretNumber lies.
+     * Divides range on number of last try and leave the part that consists secretNumber.
      */
     private void changeRange() {
-        if (!isLastTryEqualNumber()) {
-            if (isLastTryGreaterThanNumber()) {
-                setCeil(getLastTry() - 1);
+        if (lastTry != secretNumber) {
+            if (lastTry > secretNumber) {
+                setCeil(lastTry - 1);
             } else {
-                setFloor(getLastTry() + 1);
+                setFloor(lastTry + 1);
             }
         }
     }
