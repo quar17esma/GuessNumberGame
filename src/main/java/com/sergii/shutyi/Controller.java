@@ -7,6 +7,7 @@ import java.util.Scanner;
  */
 public class Controller {
 
+
     Model model;
     View view;
 

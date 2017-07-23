@@ -81,6 +81,11 @@ public class Model {
         }
     }
 
+    /**
+     * Returns true if value in range between floor and ceil.
+     * @param value value to check
+     * @return true if value between floor and ceil
+     */
     public boolean isValueInRange(int value){
         if (value > floor && value < ceil) {
             return true;
