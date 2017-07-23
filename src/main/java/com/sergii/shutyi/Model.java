@@ -16,7 +16,7 @@ public class Model {
     /**
      * Assigns random positive value to this.number.
      */
-    public void pickNumber(){
+    public void pickNumber() {
         number = rand(floor, ceil);
     }
 
@@ -33,7 +33,7 @@ public class Model {
             throw new IllegalArgumentException("max must be greater than min");
         }
 
-        return (int)(Math.random() * ((max - min) + 1)) + min;
+        return (int) (Math.random() * ((max - min) + 1)) + min;
     }
 
     /**
@@ -50,7 +50,20 @@ public class Model {
             throw new IllegalArgumentException("max must be greater than min");
         }
 
-        return (int)(Math.random() * ((max - min) + 1)) + min;
+        return (int) (Math.random() * ((max - min) + 1)) + min;
+    }
+
+    public boolean checkTry(int value) {
+        lastTry = value;
+        triesList.add(lastTry);
+
+        if (lastTry == number) {
+//            view.printMessage(view.WRONG_GUESS);
+//            view.printMessage(view.YOUR_ATTEMPTS + model.getTriesList().toString());
+            return true;
+        }
+        changeRange();
+        return false;
     }
 
     /**
@@ -67,11 +80,25 @@ public class Model {
      *
      * @return <tt>true</tt> if this.lastTry greater than this.number
      */
-    public boolean isLastTryGreaterThanNumber() {
-        if (lastTry > number){
+    private boolean isLastTryGreaterThanNumber() {
+        if (lastTry > number) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * Changes range of numbers to guess.
+     * Divides range on number of last try and leave the part that consists number.
+     */
+    private void changeRange() {
+        if (!isLastTryEqualNumber()) {
+            if (isLastTryGreaterThanNumber()) {
+                setCeil(getLastTry() - 1);
+            } else {
+                setFloor(getLastTry() + 1);
+            }
         }
     }
 

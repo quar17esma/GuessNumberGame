@@ -30,16 +30,20 @@ public class Controller {
         Scanner sc = new Scanner(System.in);
 
         while (!model.isLastTryEqualNumber()) {
-            model.setLastTry(inputIntValue(sc));
-            model.getTriesList().add(model.getLastTry());
-
-            if (!model.isLastTryEqualNumber()){
-                view.printMessage(View.WRONG_GUESS);
+//            model.setLastTry(inputIntValue(sc));
+//            model.getTriesList().add(model.getLastTry());
+//
+//            if (!model.isLastTryEqualNumber()){
+//                view.printMessage(View.WRONG_GUESS);
+//                view.printMessage(view.YOUR_ATTEMPTS + model.getTriesList().toString());
+//                changeRange();
+//            }
+            if (!model.checkTry(inputIntValue(sc))){
+                view.printMessage(view.WRONG_GUESS);
                 view.printMessage(view.YOUR_ATTEMPTS + model.getTriesList().toString());
-                changeRange();
             }
         }
-        
+
         view.printResult(model);
     }
 
@@ -68,17 +72,17 @@ public class Controller {
         }
     }
 
-    /**
-     * Changes range of numbers to guess.
-     * Divides range on number of last try and leave the part that consists number.
-     */
-    private void changeRange() {
-        if (!model.isLastTryEqualNumber()) {
-            if (model.isLastTryGreaterThanNumber()) {
-                model.setCeil(model.getLastTry()-1);
-            } else {
-                model.setFloor(model.getLastTry()+1);
-            }
-        }
-    }
+//    /**
+//     * Changes range of numbers to guess.
+//     * Divides range on number of last try and leave the part that consists number.
+//     */
+//    private void changeRange() {
+//        if (!model.isLastTryEqualNumber()) {
+//            if (model.isLastTryGreaterThanNumber()) {
+//                model.setCeil(model.getLastTry()-1);
+//            } else {
+//                model.setFloor(model.getLastTry()+1);
+//            }
+//        }
+//    }
 }
