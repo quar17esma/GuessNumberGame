@@ -27,7 +27,7 @@ public class Model {
      * @return the random number from range
      * @throws IllegalArgumentException {@inheritDoc} if min is greater or equals max
      */
-    public static int rand(int min, int max) {
+    private static int rand(int min, int max) {
         if (min >= max) {
             throw new IllegalArgumentException("max must be greater than min");
         }
@@ -47,7 +47,7 @@ public class Model {
         int min = 0;
         int max = Short.MAX_VALUE;
 
-        return (int) (Math.random() * ((max - min) + 1)) + min;
+        return (int) (Math.random() * ((max - min)-1)) + min + 1;
     }
 
     /**
@@ -79,6 +79,13 @@ public class Model {
                 setFloor(lastTry);
             }
         }
+    }
+
+    public boolean isValueInRange(int value){
+        if (value > floor && value < ceil) {
+            return true;
+        }
+        return false;
     }
 
     public int getSecretNumber() {

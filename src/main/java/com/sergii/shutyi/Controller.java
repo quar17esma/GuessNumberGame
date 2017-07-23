@@ -52,7 +52,7 @@ public class Controller {
                 sc.next();
             } else {
                 int inputtedInt = sc.nextInt();
-                if (inputtedInt > model.getFloor() && inputtedInt < model.getCeil()) {
+                if (model.isValueInRange(inputtedInt)) {
                     return inputtedInt;
                 }
                 view.printIncorrectInput(model);

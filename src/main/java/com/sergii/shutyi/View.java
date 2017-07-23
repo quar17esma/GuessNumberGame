@@ -10,13 +10,17 @@ public class View {
     public static final String RIGHT_GUESS = "Congratulations! You guessed the number.";
     public static final String YOUR_ATTEMPTS = "Your attempts: ";
     public static final String WRONG_INPUT = "Incorrect input! ";
+    public static final String BARRIERS_NOT_INCLUDED = "Barriers not included.";
     public static final String HYPHEN = " - ";
+    public static final String DOT = ".";
+    public static final String SPACE = " ";
 
     /**
      * Prints invitation and current range of numbers
      */
     public void printInvitation(Model model){
-        printMessage(GUESS_NUMBER_IN_RANGE + model.getFloor() + HYPHEN + model.getCeil());
+        printMessage(GUESS_NUMBER_IN_RANGE + model.getFloor() + HYPHEN + model.getCeil()
+                + DOT + SPACE + BARRIERS_NOT_INCLUDED);
     }
 
     /**
@@ -45,7 +49,7 @@ public class View {
 
     /**
      * Prints message to commandline
-     * @param message to print
+     * @param message message to print
      */
     private void printMessage(String message){
         System.out.println(message);
