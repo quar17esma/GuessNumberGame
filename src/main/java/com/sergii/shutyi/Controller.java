@@ -25,25 +25,14 @@ public class Controller {
      * or changes the range and propose another try with showing previous attempts.
      */
     public void processUser() {
-        model.pickNumber();
+        model.pickSecretNumber();
 
         Scanner sc = new Scanner(System.in);
 
-        while (!model.isLastTryEqualNumber()) {
-//            model.setLastTry(inputIntValue(sc));
-//            model.getTriesList().add(model.getLastTry());
-//
-//            if (!model.isLastTryEqualNumber()){
-//                view.printMessage(View.WRONG_GUESS);
-//                view.printMessage(view.YOUR_ATTEMPTS + model.getTriesList().toString());
-//                changeRange();
-//            }
-            if (!model.checkTry(inputIntValue(sc))){
-//                view.printMessage(view.WRONG_GUESS);
-//                view.printMessage(view.YOUR_ATTEMPTS + model.getTriesList().toString());
-                view.printWrongTry(model);
-            }
+        while (!model.checkTry(inputIntValue(sc))) {
+            view.printWrongTry(model);
         }
+
         view.printResult(model);
     }
 
@@ -51,6 +40,7 @@ public class Controller {
      * Gets data from user.
      * Method shows invitation for user to input data and check it.
      * Returns entered number if input is correct, or propose another try if not.
+     *
      * @return entered (@code int) value in range of numbers to guess
      */
     private int inputIntValue(Scanner sc) {
@@ -69,18 +59,4 @@ public class Controller {
             }
         }
     }
-
-//    /**
-//     * Changes range of numbers to guess.
-//     * Divides range on number of last try and leave the part that consists number.
-//     */
-//    private void changeRange() {
-//        if (!model.isLastTryEqualNumber()) {
-//            if (model.isLastTryGreaterThanNumber()) {
-//                model.setCeil(model.getLastTry()-1);
-//            } else {
-//                model.setFloor(model.getLastTry()+1);
-//            }
-//        }
-//    }
 }
