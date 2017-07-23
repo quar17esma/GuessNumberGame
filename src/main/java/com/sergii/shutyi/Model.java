@@ -74,9 +74,9 @@ public class Model {
     private void changeRange() {
         if (lastTry != secretNumber) {
             if (lastTry > secretNumber) {
-                setCeil(lastTry - 1);
+                setCeil(lastTry);
             } else {
-                setFloor(lastTry + 1);
+                setFloor(lastTry);
             }
         }
     }
