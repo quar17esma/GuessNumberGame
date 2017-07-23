@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class Model {
 
     private int secretNumber;
-    private int floor = 0;
-    private int ceil = 100;
+    private int floor = InitialBarriers.INITIAL_BARRIER_FLOOR;
+    private int ceil = InitialBarriers.INITIAL_BARRIER_CEIL;
     private int lastTry;
     private ArrayList<Integer> triesList = new ArrayList<Integer>();
 
