@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class Model {
 
     private int secretNumber;
-    private int floor = InitialBarriers.INITIAL_BARRIER_FLOOR;
-    private int ceil = InitialBarriers.INITIAL_BARRIER_CEIL;
+    private int floor = InitialConstants.INITIAL_BARRIER_FLOOR;
+    private int ceil = InitialConstants.INITIAL_BARRIER_CEIL;
     private int lastTry;
     private ArrayList<Integer> triesList = new ArrayList<Integer>();
 
@@ -27,12 +27,16 @@ public class Model {
      * @return the random number from range
      * @throws IllegalArgumentException {@inheritDoc} if min is greater or equals max
      */
-    private static int rand(int min, int max) {
+    public static int rand(int min, int max) {
         if (min >= max) {
             throw new IllegalArgumentException("max must be greater than min");
         }
+        if ((max - min - 1) < (InitialConstants.MINIMUM_NUMBERS_IN_RANGE)){
+            throw  new IllegalArgumentException("between initial barriers must be at least " +
+                    + InitialConstants.MINIMUM_NUMBERS_IN_RANGE + " number(s)");
+        }
 
-        return (int) (Math.random() * ((max - min) + 1)) + min;
+        return (int) (Math.random() * ((max - min)-1)) + min + 1;
     }
 
     /**
