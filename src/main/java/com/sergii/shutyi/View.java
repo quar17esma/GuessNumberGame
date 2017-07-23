@@ -20,4 +20,19 @@ public class View {
         System.out.println(message);
     }
 
+    /**
+     * Prints invitation and current range of numbers
+     */
+    public void printInvitation(Model model){
+        printMessage(GUESS_NUMBER_IN_RANGE + model.getFloor() + HYPHEN + model.getCeil());
+    }
+
+    /**
+     * Prints congratulation and user's statistics
+     */
+    public void printResult(Model model){
+        printMessage(RIGHT_GUESS);
+        printMessage(YOUR_ATTEMPTS + model.getTriesList().toString());
+    }
+
 }

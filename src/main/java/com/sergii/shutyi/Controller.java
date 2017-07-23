@@ -39,8 +39,8 @@ public class Controller {
                 changeRange();
             }
         }
-
-        showResult();
+        
+        view.printResult(model);
     }
 
     /**
@@ -50,12 +50,12 @@ public class Controller {
      * @return entered (@code int) value in range of numbers to guess
      */
     private int inputIntValue(Scanner sc) {
-        showInvitation();
+        view.printInvitation(model);
 
         while (true) {
             if (!sc.hasNextInt()) {
                 view.printMessage(view.WRONG_INPUT);
-                showInvitation();
+                view.printInvitation(model);
                 sc.next();
             } else {
                 int inputtedInt = sc.nextInt();
@@ -63,16 +63,9 @@ public class Controller {
                     return inputtedInt;
                 }
                 view.printMessage(view.WRONG_INPUT);
-                showInvitation();
+                view.printInvitation(model);
             }
         }
-    }
-
-    /**
-     * Requests view to print invitation and current range of numbers
-     */
-    private void showInvitation(){
-        view.printMessage(view.GUESS_NUMBER_IN_RANGE + model.getFloor() + view.HYPHEN + model.getCeil());
     }
 
     /**
@@ -87,13 +80,5 @@ public class Controller {
                 model.setFloor(model.getLastTry()+1);
             }
         }
-    }
-
-    /**
-     * Requests view to print congratulation and user's statistics
-     */
-    private void showResult() {
-        view.printMessage(view.RIGHT_GUESS);
-        view.printMessage(view.YOUR_ATTEMPTS + model.getTriesList().toString());
     }
 }
