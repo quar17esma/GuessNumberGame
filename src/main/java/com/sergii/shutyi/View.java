@@ -13,18 +13,26 @@ public class View {
     public static final String HYPHEN = " - ";
 
     /**
-     * Prints message to commandline
-     * @param message
-     */
-    public void printMessage(String message){
-        System.out.println(message);
-    }
-
-    /**
      * Prints invitation and current range of numbers
      */
     public void printInvitation(Model model){
         printMessage(GUESS_NUMBER_IN_RANGE + model.getFloor() + HYPHEN + model.getCeil());
+    }
+
+    /**
+     * Prints error and new invitation
+     */
+    public void printIncorrectInput(Model model){
+        printMessage(WRONG_INPUT);
+        printInvitation(model);
+    }
+
+    /**
+     * Prints message that user did not guess and his attempts
+     */
+    public void printWrongTry(Model model){
+        printMessage(WRONG_GUESS);
+        printMessage(YOUR_ATTEMPTS + model.getTriesList().toString());
     }
 
     /**
@@ -35,4 +43,11 @@ public class View {
         printMessage(YOUR_ATTEMPTS + model.getTriesList().toString());
     }
 
+    /**
+     * Prints message to commandline
+     * @param message to print
+     */
+    private void printMessage(String message){
+        System.out.println(message);
+    }
 }

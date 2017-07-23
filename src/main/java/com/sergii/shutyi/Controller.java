@@ -39,11 +39,11 @@ public class Controller {
 //                changeRange();
 //            }
             if (!model.checkTry(inputIntValue(sc))){
-                view.printMessage(view.WRONG_GUESS);
-                view.printMessage(view.YOUR_ATTEMPTS + model.getTriesList().toString());
+//                view.printMessage(view.WRONG_GUESS);
+//                view.printMessage(view.YOUR_ATTEMPTS + model.getTriesList().toString());
+                view.printWrongTry(model);
             }
         }
-
         view.printResult(model);
     }
 
@@ -58,16 +58,14 @@ public class Controller {
 
         while (true) {
             if (!sc.hasNextInt()) {
-                view.printMessage(view.WRONG_INPUT);
-                view.printInvitation(model);
+                view.printIncorrectInput(model);
                 sc.next();
             } else {
                 int inputtedInt = sc.nextInt();
                 if (inputtedInt >= model.getFloor() && inputtedInt <= model.getCeil()) {
                     return inputtedInt;
                 }
-                view.printMessage(view.WRONG_INPUT);
-                view.printInvitation(model);
+                view.printIncorrectInput(model);
             }
         }
     }
